@@ -1,70 +1,18 @@
-// Mobile Navigation Toggle
+// Smooth page load animation
 document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Toggle mobile menu
-    navToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        
-        // Animate hamburger menu
-        const bars = navToggle.querySelectorAll('.bar');
-        bars.forEach((bar, index) => {
-            if (navMenu.classList.contains('active')) {
-                if (index === 0) bar.style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-                if (index === 1) bar.style.opacity = '0';
-                if (index === 2) bar.style.transform = 'rotate(45deg) translate(-5px, -6px)';
-            } else {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            }
-        });
-    });
-
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            const bars = navToggle.querySelectorAll('.bar');
-            bars.forEach(bar => {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            });
-        });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navToggle.contains(event.target) || navMenu.contains(event.target);
-        
-        if (!isClickInsideNav && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            const bars = navToggle.querySelectorAll('.bar');
-            bars.forEach(bar => {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            });
-        }
-    });
+    // Set initial body opacity for smooth load
+    document.body.style.opacity = '0';
+    
+    // Fade in the page
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+        document.body.style.transition = 'opacity 0.5s ease-in-out';
+    }, 100);
+    
+    console.log('Portfolio website loaded successfully!');
 });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Navbar background on scroll
+// Navbar background change on scroll
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     
@@ -77,160 +25,125 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Active navigation link highlighting
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.project-card, .skill-category, .about-content');
-    
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
-    });
-});
-
-// Typing effect for hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        // Uncomment the line below to enable typing effect
-        // typeWriter(heroTitle, originalText, 50);
-    }
-});
-
-// Form handling (if you add a contact form later)
-function handleContactForm(event) {
-    event.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', data);
-    
-    // Show success message
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    
-    // Reset form
-    event.target.reset();
-}
-
-// Add smooth reveal animation for stats
-function animateStats() {
-    const stats = document.querySelectorAll('.stat h3');
-    
-    stats.forEach(stat => {
-        const finalValue = parseInt(stat.textContent);
-        let currentValue = 0;
-        const increment = finalValue / 50; // Adjust speed here
-        
-        const timer = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= finalValue) {
-                stat.textContent = finalValue + (stat.textContent.includes('+') ? '+' : '') + 
-                                 (stat.textContent.includes('%') ? '%' : '');
-                clearInterval(timer);
-            } else {
-                stat.textContent = Math.floor(currentValue) + (stat.textContent.includes('+') ? '+' : '') + 
-                                 (stat.textContent.includes('%') ? '%' : '');
-            }
-        }, 50);
-    });
-}
-
-// Trigger stats animation when about section is visible
-const aboutSection = document.querySelector('#about');
-if (aboutSection) {
-    const aboutObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateStats();
-                aboutObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    aboutObserver.observe(aboutSection);
-}
-
-// Parallax effect for hero section (subtle)
+// Subtle parallax effect for hero section
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     
     if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        const parallaxSpeed = 0.3;
+        hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
     }
 });
 
-// Smooth page load
-window.addEventListener('load', function() {
-    document.body.style.opacity = '1';
-    document.body.style.transition = 'opacity 0.3s ease-in-out';
+// Add interactive hover effects to tech icons
+document.addEventListener('DOMContentLoaded', function() {
+    const techIcons = document.querySelectorAll('.tech-icons i');
+    
+    techIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.3) rotate(10deg)';
+            this.style.filter = 'drop-shadow(0 0 15px currentColor)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+            this.style.filter = 'drop-shadow(0 0 10px currentColor)';
+        });
+    });
 });
 
-// Initialize everything when DOM is loaded
+// Add click effect to the main CTA button
 document.addEventListener('DOMContentLoaded', function() {
-    // Set initial body opacity for smooth load
-    document.body.style.opacity = '0';
+    const ctaButton = document.querySelector('.btn-primary');
     
-    // Add any additional initialization here
-    console.log('Portfolio website loaded successfully!');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    }
+});
+
+// Add CSS for ripple effect
+const style = document.createElement('style');
+style.textContent = `
+    .btn-primary {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Smooth reveal animation for hero elements
+document.addEventListener('DOMContentLoaded', function() {
+    const heroElements = document.querySelectorAll('.greeting-text, .hero-title, .title-stack, .hero-description, .hero-cta');
+    
+    heroElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, 200 + (index * 150));
+    });
+});
+
+// Add floating animation to code snippet
+document.addEventListener('DOMContentLoaded', function() {
+    const codeSnippet = document.querySelector('.code-snippet');
+    
+    if (codeSnippet) {
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', function(e) {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        });
+        
+        function animate() {
+            const currentTransform = codeSnippet.style.transform || '';
+            const floatTransform = currentTransform.includes('translateY') ? 
+                currentTransform : currentTransform + ' translateY(-20px)';
+            
+            codeSnippet.style.transform = floatTransform + ` rotateX(${mouseY * 0.1}deg) rotateY(${mouseX * 0.1}deg)`;
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    }
 });
