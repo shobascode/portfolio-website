@@ -1,6 +1,37 @@
+// Font switching functionality
+function switchFont(fontClass) {
+    // Hide all cursive texts
+    const cursiveTexts = document.querySelectorAll('.cursive-text');
+    cursiveTexts.forEach(text => {
+        text.classList.remove('active');
+    });
+    
+    // Show selected font
+    const selectedText = document.querySelector('.' + fontClass);
+    if (selectedText) {
+        selectedText.classList.add('active');
+    }
+    
+    // Update button states
+    const buttons = document.querySelectorAll('.font-btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    event.target.classList.add('active');
+}
+
 // Handwriting animation controller
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Handwriting animation loaded!');
+    
+    // Show the first font by default
+    setTimeout(() => {
+        const firstFont = document.querySelector('.dancing-script');
+        if (firstFont) {
+            firstFont.classList.add('active');
+        }
+    }, 2000);
     
     // Add sparkle effects during writing
     const container = document.querySelector('.handwriting-container');

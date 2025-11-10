@@ -80,27 +80,71 @@ body {
     }
 }
 
-/* Fallback text (hidden by default, shows if SVG fails) */
-.fallback-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 4rem;
+/* Cursive text styles */
+.cursive-text {
+    font-size: 5rem;
     font-weight: 600;
     color: #ff69b4;
     text-align: center;
+    text-shadow: 3px 6px 12px rgba(255, 105, 180, 0.4);
+    margin: 2rem 0;
     opacity: 0;
-    animation: showFallback 1s ease-in-out 5s forwards;
-    text-shadow: 2px 4px 8px rgba(255, 105, 180, 0.3);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(20px);
+    transition: all 0.5s ease;
     white-space: nowrap;
 }
 
-@keyframes showFallback {
-    to {
-        opacity: 1;
-    }
+.cursive-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dancing-script {
+    font-family: 'Dancing Script', cursive;
+}
+
+.great-vibes {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+}
+
+.pacifico {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+}
+
+/* Font selector */
+.font-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.font-btn {
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ff69b4;
+    border-radius: 25px;
+    color: #ff69b4;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.font-btn:hover {
+    background: #ff69b4;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+}
+
+.font-btn.active {
+    background: #ff69b4;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
 }
 
 /* Responsive design */
@@ -113,8 +157,21 @@ body {
         max-height: 180px;
     }
     
-    .fallback-text {
-        font-size: 2.5rem;
+    .cursive-text {
+        font-size: 3.5rem;
+    }
+    
+    .great-vibes {
+        font-size: 3rem;
+    }
+    
+    .pacifico {
+        font-size: 2.8rem;
+    }
+    
+    .font-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -123,8 +180,25 @@ body {
         max-height: 120px;
     }
     
-    .fallback-text {
+    .cursive-text {
+        font-size: 2.5rem;
+    }
+    
+    .great-vibes {
+        font-size: 2.2rem;
+    }
+    
+    .pacifico {
         font-size: 2rem;
+    }
+    
+    .font-selector {
+        gap: 0.5rem;
+    }
+    
+    .font-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.7rem;
     }
 }
 

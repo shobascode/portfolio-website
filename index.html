@@ -6,7 +6,7 @@
     <title>Shoba Santosh - Portfolio</title>
     <meta name="description" content="Shoba Santosh's portfolio website">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -45,8 +45,17 @@
                 <path id="flourish2" class="letter-path" d="M820 120 Q840 110 860 120 Q870 130 860 140" fill="none" stroke="#ff69b4" stroke-width="2" stroke-linecap="round"/>
             </svg>
             
-            <!-- Fallback text for when animation completes -->
-            <div class="fallback-text">Shoba Santosh</div>
+            <!-- Cursive text versions -->
+            <div class="cursive-text dancing-script">Shoba Santosh</div>
+            <div class="cursive-text great-vibes">Shoba Santosh</div>
+            <div class="cursive-text pacifico">Shoba Santosh</div>
+            
+            <!-- Font selector -->
+            <div class="font-selector">
+                <button onclick="switchFont('dancing-script')" class="font-btn active">Dancing Script</button>
+                <button onclick="switchFont('great-vibes')" class="font-btn">Great Vibes</button>
+                <button onclick="switchFont('pacifico')" class="font-btn">Pacifico</button>
+            </div>
         </div>
     </div>
     
