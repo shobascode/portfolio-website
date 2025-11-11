@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoba - Portfolio</title>
-    <meta name="description" content="Shoba's portfolio website">
-    <link rel="stylesheet" href="styles.css">
+    <title>Fading Text</title>
+    <style>
+        /* CSS for styling and initial state */
+        body {
+            /* Full viewport height and center alignment */
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light background for contrast */
+        }
+
+        #fade-text {
+            /* Pink color and large font size */
+            color: #ff69b4; /* Hot Pink */
+            font-size: 3em;
+            font-weight: bold;
+            /* Initial state: fully transparent (opacity 0) */
+            opacity: 0;
+            /* CSS transition property to enable smooth fading */
+            transition: opacity 3s ease-in-out; /* 3-second fade duration */
+        }
+    </style>
 </head>
 <body>
-    <!-- Your content will go here -->
-    
-    <script src="script.js"></script>
+
+    <div id="fade-text">
+        Bringing creativity to math education
+    </div>
+
+    <script>
+        // JavaScript to trigger the fade-in effect
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Get the text element
+            const textElement = document.getElementById('fade-text');
+            
+            // Set the opacity to 1 (fully visible) after the page loads.
+            // The CSS transition property handles the smooth animation.
+            textElement.style.opacity = 1;
+        });
+    </script>
+
 </body>
 </html>
