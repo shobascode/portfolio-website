@@ -2,46 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Guaranteed Slow Fade In</title>
-    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Spring In</title>
     <style>
+        /* CSS for centering and styling */
         body {
-            /* Center the content */
             height: 100vh;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Klee One', cursive;
-            background-color: #ffe3fc;
+            background-color: #1a1a1a;
+            font-family: sans-serif;
         }
 
-        /* 1. Define the Fade-In Keyframes */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        #fading-text {
-            color: #000000;
+        #spring-text {
+            color: #ff69b4; /* Pink color */
             font-size: 3.5em;
-            font-weight: 400;
+            font-weight: bold;
             text-align: center;
-            font-family: 'Klee One', cursive;
             
-            /* 2. Apply the Animation */
-            animation-name: fadeIn;
-            animation-duration: 4s; 
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: forwards; /* Crucial: Keeps the final state (opacity: 1) */
+            /* --- 1. Initial State (Hidden & Raised) --- */
+            opacity: 0;                     /* Start invisible */
+            transform: translateY(-50px);   /* Start 50px above final position */
+            
+            /* --- 2. Transition Definition --- */
+            /* This single line animates both opacity and the transform (movement) */
+            /* The 'cubic-bezier' value creates the spring/bounce end effect */
+            transition: opacity 1s, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
     </style>
 </head>
 <body>
 
-    <div id="fading-text">
+    <div id="spring-text">
         Bringing creativity to math education
     </div>
+
+    <script>
+        // --- 3. JavaScript to Trigger the Animation ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElement = document.getElementById('spring-text');
+            
+            // Setting the final state (visible and in place)
+            textElement.style.opacity = 1; 
+            textElement.style.transform = 'translateY(0)'; // Final position
+        });
+    </script>
 
 </body>
 </html>
