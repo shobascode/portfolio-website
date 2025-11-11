@@ -14,30 +14,50 @@
       margin: 0;
     }
 
-    h1 {
-      font-family: "Poppins", sans-serif;
-      font-size: 4rem;
-      color: #ffb6c1; /* light pink */
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #ffb6c1; /* optional typing cursor */
-      width: 0;
-      animation: typing 4s steps(14, end) forwards, blink 0.7s step-end infinite;
+    svg {
+      width: 80%;
+      max-width: 800px;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 14ch }
+    path {
+      fill: none;
+      stroke: #ffb6c1;       /* light pink */
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: write 6s ease forwards;
     }
 
-    @keyframes blink {
-      50% { border-color: transparent }
+    @keyframes write {
+      to {
+        stroke-dashoffset: 0;
+      }
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
   </style>
 </head>
 <body>
-  <h1>Shoba Santosh</h1>
+  <!-- Handwriting-style path for "Shoba Santosh" -->
+  <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Stylized handwriting path (smooth bezier curves) -->
+    <path d="M100,200
+             C150,150 200,150 250,200
+             M260,200
+             Q280,160 310,200
+             T370,200
+             M390,200
+             Q420,130 450,200
+             T510,200
+             M540,200
+             Q580,160 620,200
+             T680,200
+             M710,200
+             Q750,130 790,200
+             T850,200
+             M880,200
+             Q910,160 940,200
+             T1000,200" />
+  </svg>
 </body>
 </html>
