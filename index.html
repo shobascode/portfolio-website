@@ -3,46 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fading Text</title>
+    <title>Slow Fade In</title>
     <style>
-        /* CSS for styling and initial state */
+        /* CSS for centering, styling, and initial state */
         body {
-            /* Full viewport height and center alignment */
+            /* Ensures the content is centered in the viewport */
             height: 100vh;
             margin: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Light background for contrast */
+            justify-content: center; /* Horizontal centering */
+            align-items: center;    /* Vertical centering */
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a; /* Dark background for good contrast */
         }
 
-        #fade-text {
-            /* Pink color and large font size */
-            color: #ff69b4; /* Hot Pink */
-            font-size: 3em;
-            font-weight: bold;
-            /* Initial state: fully transparent (opacity 0) */
-            opacity: 0;
-            /* CSS transition property to enable smooth fading */
-            transition: opacity 3s ease-in-out; /* 3-second fade duration */
+        #fading-text {
+            /* Text styling */
+            color: #d4d4d4; /* Light gray text */
+            font-size: 3.5em;
+            font-weight: 300; /* Lighter font weight for a clean look */
+            text-align: center;
+            
+            /* Initial State: invisible */
+            opacity: 0; 
+            
+            /* Transition: defines the speed and smoothness of the animation. */
+            /* The fade will take 5 seconds (5s) */
+            transition: opacity 5s ease-in-out;
         }
     </style>
 </head>
 <body>
 
-    <div id="fade-text">
+    <div id="fading-text">
         Bringing creativity to math education
     </div>
 
     <script>
-        // JavaScript to trigger the fade-in effect
-        document.addEventListener('DOMContentLoaded', (event) => {
+        // JavaScript to trigger the slow fade-in effect
+        document.addEventListener('DOMContentLoaded', () => {
             // Get the text element
-            const textElement = document.getElementById('fade-text');
+            const textElement = document.getElementById('fading-text');
             
-            // Set the opacity to 1 (fully visible) after the page loads.
-            // The CSS transition property handles the smooth animation.
+            // By setting the opacity to 1, the CSS 'transition' smoothly 
+            // animates the change from 0 to 1 over 5 seconds.
             textElement.style.opacity = 1;
         });
     </script>
