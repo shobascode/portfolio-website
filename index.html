@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoba - Portfolio</title>
-    <meta name="description" content="Shoba's portfolio website">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shoba Santosh Animation</title>
+  <style>
+    body {
+      background: #fffafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: "Pacifico", cursive;
+      font-size: 5rem;
+      color: #ff69b4;
+      text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4, 0 0 30px #ff1493;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInMove 3s ease forwards, glowPulse 2s infinite alternate;
+    }
+
+    @keyframes fadeInMove {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4;
+      }
+      100% {
+        text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+      }
+    }
+
+    /* Load the cursive font */
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+  </style>
 </head>
 <body>
-    <!-- Your content will go here -->
-    
-    <script src="script.js"></script>
+  <h1>Shoba Santosh</h1>
 </body>
 </html>
